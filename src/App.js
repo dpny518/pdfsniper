@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PDFViewer from './PDFViewer';
 import Highlighter from './Highlighter';
+import { extractTextFromHighlights } from './OCR'; // Import OCR utility
 import ExcelExporter from './ExcelExporter';
 
 const App = () => {
@@ -17,15 +18,19 @@ const App = () => {
     setHighlights([...highlights, highlight]);
   };
 
-  const handleExportToExcel = () => {
-    // Convert highlights to Excel format and set Excel data state
-    // Replace this with your logic to convert highlights to Excel format
-    const formattedData = highlights.map((highlight) => ({
-      // Example: Assuming highlight has text and coordinates properties
-      text: highlight.text,
-      x: highlight.coordinates.x,
-      y: highlight.coordinates.y,
+  const handleExportToExcel = async () => {
+    // Extract text from highlighted sections using OCR
+    const highlightedText = await extractTextFromHighlights(highlights);
+    console.log('Highlighted Text:', highlightedText); // Debugging log
+
+    // Convert highlighted text to Excel format and set Excel data state
+    // Replace this with your logic to convert text to Excel format
+    // For example, you can use a library like xlsx to generate Excel files
+    const formattedData = highlightedText.map((text, index) => ({
+      text,
+      index,
     }));
+    console.log('Formatted Data:', formattedData); // Debugging log
     setExcelData(formattedData);
   };
 
