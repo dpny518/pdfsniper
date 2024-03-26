@@ -1,5 +1,8 @@
 import React from 'react';
-import XLSX from 'xlsx';
+import * as XLSX from 'xlsx';
+
+
+
 
 const ExcelExporter = ({ data }) => {
   const exportToExcel = () => {

@@ -1,0 +1,14 @@
+.pdf-viewer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pdf-image {
+  width: 70%; /* Adjust as needed */
+}
+
+.pdf-text {
+  width: 30%; /* Adjust as needed */
+  background-color: lightgray;
+  padding: 10px;
+}
